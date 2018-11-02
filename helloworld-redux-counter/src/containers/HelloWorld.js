@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { incrementCount } from '../actions/counter.js';
 import HelloWorld from '../components/HelloWorld'
 export const mapStateToProps = (state) => ({
-    clicks: state.counter || 0
+    clicks: state.get('counter') || 0
 });
 
 export const mapDispatchToProps = dispatch => ({
