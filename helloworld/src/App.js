@@ -5,7 +5,7 @@ import HelloWorld from './HelloWorld';
 class App extends Component {
   render() {
     return (
-      <HelloWorld message="Hello React!" />
+      <HelloWorld />
     );
   }
 }

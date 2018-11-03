@@ -1,18 +1,15 @@
 import { connect } from 'react-redux';
+import { incrementCount } from '../actions/counter.js';
 import HelloWorld from '../components/HelloWorld'
-import * as moment from 'moment';
+export const mapStateToProps = (state) => ({
+    clicks: state.get('counter') || 0
+});
 
-
-export const mapStateToProps = (state) => {
-    let daysUntilBirthday = moment
-    .duration(moment('2020-01-01')
-    .diff(moment()))
-    .days()
-    return {
-        message: `${state.get('message')} - You have ${daysUntilBirthday} days until your birthday!`
-    }
-}
+export const mapDispatchToProps = dispatch => ({
+    incrementClick: ()=>dispatch(incrementCount()) 
+})
 
 export default connect(
     mapStateToProps,
+    mapDispatchToProps,
 )(HelloWorld);
