@@ -1,30 +1,34 @@
 import { connect } from 'react-redux';
 import HelloWorld from '../components/HelloWorld'
-import { toggleItem } from '../actions/check.js';
-import { computeDropoffs, stateItemsWithChecked } from '../selectors/todoSelector';
+import { toggleItem, changeSort} from '../actions/check.js';
+import { computeDropoffs, stateItemsWithChecked, stateOrder} from '../selectors/todoSelector';
 export const mapStateToProps = (state) => {
-    console.log('hit');
-    // let todoItems = state.get('todoItems').toList().map(i => i.set('checked', state.getIn(['checked', i.get('id').toString()])));
-    // let todoItemsWithDropoff = state.get('todoItems').map(i=>i.get('name')).reduce((accum, item)=>{
-    //     if(item.includes('dropoff'))
-    //     {
-    //         return accum + 1;
-    //     }
-    //     return accum;
-    // }, 0)
-    let todoItemsWithDropoff = computeDropoffs(state);
+    let before = performance.now();
+    // let todoItems = state.get('todoItems').sort(
+    //     (a, b) => 
+    //         state.get('order') > 0 ? a.get('name').localeCompare(b.get('name'))
+    //         : b.get('name').localeCompare(a.get('name'))
+    //         )
+    //         .map(i => i.set("checked", state.get('checked').get(i.get("id").toString())));
+
     let todoItems = stateItemsWithChecked(state);
-    let duplicateItemCount = 
+    let res = 
      {
         todoItems,
-        todoItemsWithDropoff
+
+        order: stateOrder(state)
     }
-    return duplicateItemCount;
+    let after = performance.now();
+    console.log(`took ${after - before}ms`)
+    return res;
 };
 
 export const mapDispatchToProps = dispatch => ({
     onCheckboxClick: (id)=>{
         dispatch(toggleItem(id));
+    },
+    sortChanged: (event) => {
+        dispatch(changeSort(event.target.value));
     }
 })
 

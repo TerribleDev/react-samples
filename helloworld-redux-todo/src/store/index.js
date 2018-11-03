@@ -29,7 +29,8 @@ const store = createStore(
     checked: sampleData.reduce((accum, item)=>{
       accum[item.id] = item.checked;
       return accum;
-    }, {})
+    }, {}),
+    order: 0
   }),
   composedEnhancers
 );

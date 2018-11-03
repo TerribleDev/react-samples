@@ -8,9 +8,14 @@ export default class HelloWorld extends PureComponent {
     })
     return (
       <div>
-        <h2>Hello React <small>dropoffs: {this.props.todoItemsWithDropoff}</small></h2>
+        <select value={this.props.order} onChange={this.props.sortChanged}>
+          <option value="1">Asc</option>
+          <option value="0">Dec</option>
+        </select>
+        <h2>Hello React</h2>
         {boxes}
       </div>
+      
     )
   }
 }
