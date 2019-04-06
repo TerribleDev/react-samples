@@ -1,4 +1,4 @@
-import { TOGGLE_ITEM, CHANGE_SORT } from "../actions/constants";
+import { TOGGLE_ITEM, CHANGE_SORT, SHOW_CHANGE } from "../actions/constants";
 import { Map } from 'immutable';
 export default function rootReducer(state, action){
     switch(action.type) { 
@@ -8,6 +8,9 @@ export default function rootReducer(state, action){
         }
         case CHANGE_SORT: {
             return state.set('order', action.payload.newSort );
+        }
+        case SHOW_CHANGE: {
+            return state.set('showX', action.payload.num);
         }
         default:
             return state;

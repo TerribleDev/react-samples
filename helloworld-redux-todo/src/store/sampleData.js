@@ -194,7 +194,7 @@ let nouns = [
 "bow",
 "keys"];
 
-for (let i = 0; i <= 3000; i++) {
+for (let i = 0; i <= 30000; i++) {
     let randomVerb = _.sample(verbs);
     let randomNoun = _.sample(nouns);
     results.push(`${randomVerb} ${randomNoun}`);

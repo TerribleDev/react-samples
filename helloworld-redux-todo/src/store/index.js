@@ -30,7 +30,8 @@ const store = createStore(
       accum[item.id] = item.checked;
       return accum;
     }, {}),
-    order: 0
+    order: 0,
+    showX: 20
   }),
   composedEnhancers
 );
